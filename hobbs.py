@@ -1,8 +1,3 @@
-"""
-Implementation of Hobbs' algorithm for pronoun resolution.
-Chris Ward, 2014
-"""
-
 import sys
 import nltk
 from nltk.corpus import names
@@ -156,7 +151,7 @@ def traverse_left(tree, pos, path, pro, check=1):
         for p in bf_pos:
             if p<path[0] and p not in path:
                 if "NP" in tree[p].label() and match(tree, p, pro):
-                    if check_for_intervening_np(tree, pos, p, pro) == True:
+                    if check_for_intervening_np(tree, pos, p, pro) == True
                         return tree, p
 
     elif check == 0:
