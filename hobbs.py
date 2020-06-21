@@ -113,7 +113,12 @@ def check_for_intervening_np(tree, pos, proposal, pro):
     bf_pos = [get_pos(tree, node) for node in bf]
 
     if count_np_nodes(tree[pos]) >= 3:
-        return True
+        for node_pos in bf_pos:
+            if "NP" in tree[node_pos].label() \
+            and tree[node_pos].label() not in nominal_labels: 
+                if node_pos != proposal and node_pos != get_pos(tree, pro):
+                    if node_pos < proposal:
+                        return True
     return False
 
 def traverse_left(tree, pos, path, pro, check=1):
@@ -440,6 +445,8 @@ def demo():
         (NP (NNP Commonwealth) (NNP Edison)))))))))))(. .))")
     tree6 = Tree.fromstring('(S (NP (NNP John) ) (VP (VBD said) (SBAR (-NONE- 0) \
         (S (NP (NNP Mary) ) (VP (VBD likes) (NP (PRP herself) ) ) ) ) ) )')
+    
+    tree7 =Tree.fromstring('(S(NP(DT the)(N castle)(PP in(NP (N camelot))))(VP remained(NP (DT the)(N residence(PP of(NP (DT the)(N king)))))(PP until(NP (CD 536)(WRB when(SBAR (-NONE- 0)(S (NP he)(VP moved (NP it)(PP to(NP (N london)))))))))))')
 
     print("Sentence 1:")
     print(tree1)
@@ -459,6 +466,7 @@ def demo():
     print ("Proposed antecedent for 'it':", tree[pos])
     tree, pos = hobbs([tree3,tree4], (0,0))
     print ("Proposed antecedent for 'he':", tree[pos], '\n')
+    print(tree4[(0,0)])
 
     print ("Sentence 5:")
     print (tree5)
@@ -500,3 +508,4 @@ def main(argv):
                     print (t, '\n')
                 print ("Proposed antecedent for '"+pro+"':", tree[pos])
 main(sys.argv)
+
