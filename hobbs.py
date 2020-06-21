@@ -113,12 +113,7 @@ def check_for_intervening_np(tree, pos, proposal, pro):
     bf_pos = [get_pos(tree, node) for node in bf]
 
     if count_np_nodes(tree[pos]) >= 3:
-        for node_pos in bf_pos:
-            if "NP" in tree[node_pos].label() \
-            and tree[node_pos].label() not in nominal_labels: 
-                if node_pos != proposal and node_pos != get_pos(tree, pro)[:-1]:
-                    if node_pos < proposal:
-                        return True
+        return True
     return False
 
 def traverse_left(tree, pos, path, pro, check=1):
