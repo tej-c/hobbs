@@ -3,7 +3,7 @@ import nltk
 from nltk.corpus import names
 from nltk import Tree
 import queue as Queue
-nltk.download('names')
+#nltk.download('names')
 
 # Labels for nominal heads
 nominal_labels = ["NN", "NNS", "NNP", "NNPS", "PRP"]
@@ -12,9 +12,11 @@ def get_pos(tree, node):
     """ Given a tree and a node, return the tree position
     of the node. 
     """ 
+    #print(tree.treepositions())
     for pos in tree.treepositions():
         if tree[pos] == node:
             return pos
+    
 
 def get_dom_np(sents, pos):
     """ Finds the position of the NP that immediately dominates 
@@ -114,7 +116,7 @@ def check_for_intervening_np(tree, pos, proposal, pro):
         for node_pos in bf_pos:
             if "NP" in tree[node_pos].label() \
             and tree[node_pos].label() not in nominal_labels: 
-                if node_pos != proposal and node_pos != get_pos(tree, pro):
+                if node_pos != proposal and node_pos != get_pos(tree, pro)[:-1]:
                     if node_pos < proposal:
                         return True
     return False
@@ -482,7 +484,7 @@ def main(argv):
             print ("Enter the file and the pronoun to resolve.")
         elif len(sys.argv) == 3:
             p = ["He", "he", "Him", "him", "She", "she", "Her",
-                "her", "It", "it", "They", "they"]
+                "her", "It", "it", "They", "they",'he','He']
             r = ["Himself", "himself", "Herself", "herself",
                 "Itself", "itself", "Themselves", "themselves"]
             fname = sys.argv[1]
@@ -502,6 +504,4 @@ def main(argv):
                 for t in trees:
                     print (t, '\n')
                 print ("Proposed antecedent for '"+pro+"':", tree[pos])
-
-if __name__ == "__main__":
-    main(sys.argv)
+main(sys.argv)
