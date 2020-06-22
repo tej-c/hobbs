@@ -116,7 +116,7 @@ def check_for_intervening_np(tree, pos, proposal, pro):
         for node_pos in bf_pos:
             if "NP" in tree[node_pos].label() \
             and tree[node_pos].label() not in nominal_labels: 
-                if node_pos != proposal and node_pos != get_pos(tree, pro):
+                if node_pos != proposal and node_pos != get_pos(tree, pro)[:-1]:
                     if node_pos < proposal:
                         return True
     return False
@@ -444,7 +444,7 @@ def demo():
         (NP (NNP Commonwealth) (NNP Edison)))))))))))(. .))")
     tree6 = Tree.fromstring('(S (NP (NNP John) ) (VP (VBD said) (SBAR(S (NP (NNP Mary) ) (VP (VBD likes) (NP (PRP herself) ) ) ) ) ) )')
     
-    tree7 =Tree.fromstring('(S(NP (DT the) (N castle) (PP in (NP (N camelot))))(VP remained(NP (DT the) (N residence (PP of (NP (DT the) (N king)))))(PP until(NP (CD 536) (WRB when  (SBAR (S (NP he) (VP moved (NP it) (PP to (NP (N london)))))))))))')
+    tree7 =Tree.fromstring('(S(NP (DT the) (N castle) (PP in (NP (N camelot))))(VP remained(NP (DT the) (N residence (PP of (NP (DT the) (N king)))))(PP until(NP (CD 536) (WRB when(S (NP he) (VP moved (NP it) (PP to (NP (N london)))))))))))')
 
     print("Sentence 1:")
     print(tree1)

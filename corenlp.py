@@ -7,24 +7,23 @@ p = ["He", "he", "Him", "him", "She", "she", "Her",
     "her", "It", "it", "They", "they",'he','He']
 def convert_to_treebank(sentence):
     grammar = nltk.CFG.fromstring("""
-S -> NP VP
-NP -> NNP|DT JJ NN|DT NN
-DT -> 'a'|'the'
-JJ -> 'flashy'
-NN -> 'hat'|'store'
-PP -> IN NP
-IN -> 'at'|'to'
-NNP -> 'John'|'Mary'|'Tej'|'Terrence'
+S -> NP VP|IN NP|NP VBD RP NP|NP VBD IN NP|PP NP PP NP NP VP NP
+RP -> 'down'
+NP -> NNP|DT JJ NN|DT NN|DT NNS|NP VP|DT JJ JJ NN|NN|NNP NNP|NP NN|PRP NN
+PRP -> 'my'
+DT -> 'a'|'the'|'an'
+JJ -> 'flashy'|'long'|'golden'|'little'|'yellow'
+NN -> 'hat'|'store'|'dog'|'cat'|'hair'|'cup'|'coffee'|'story'|'mat'|'rabbit'|'elephant'|'pajamas'
+PP -> IN NP |IN | NP IN
+IN -> 'at'|'to'|'in'|'of'|'until'|'that'|'over'|'on'
+NNP -> 'john'|'mary'|'tej'|'terrence'|'rapunzel'|'mr.'|'stone'|'alice'
 VP -> VBD SBAR
 VBD -> 'said'
-SBAR -> NONE S|S
-NONE -> '.'
-S -> NP VP
-NP -> PRP
-PRP -> 'he'|'herself'|'him'|'her'|'himself'|'she'|'He'|'it'
-VP -> VBD NP|VBD NP PP
-VBD -> 'likes'|'loves'|'knows'|'saw'|'showed'
-NP -> NNS
+SBAR -> S
+NP -> 'he'|'herself'|'him'|'her'|'himself'|'she'|'He'|'it'|'his'|'i'
+VP -> VBD NP|VBD NP PP|VRB PP|VRB|VP PP
+VBD -> 'likes'|'loves'|'knows'|'saw'|'showed'|'liked'|'dumped'|'loved'|'let'|'barked'|'told'|'sit'|'chased'|'shot'
+NP -> NNS|NP JJ JJ NN
 NNS -> 'dogs'
  """)
     a=BottomUpLeftCornerChartParser(grammar)
@@ -134,8 +133,8 @@ def hobbs(sents, pro):
                 return proposal
 
     return proposal
-sents = [convert_to_treebank(sents) for sents in input("Enter multiple sents: ").split(",")]
-pros = [(pros) for pros in input("Enter multiple pros: ").split(",")] 
+sents = [convert_to_treebank(sents.lower()) for sents in input("Enter multiple sents: ").split(",")]
+pros = [(pros.lower()) for pros in input("Enter multiple pros: ").split(",")] 
 for i in range(len(pros)):
     if pros[i] in p:
         tree,pos=hobbs(sents,pros[i])

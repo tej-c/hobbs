@@ -11,15 +11,17 @@ t=tree.treepositions()
    # print('\n',i,'\n')
 #tr=Tree.fromstring('(S(NP(DT the)(N castle)(PP in(NP (N camelot))))(VP remained(NP (DT the)(N residence(PP of(NP (DT the)(N king)))))(PP until(NP (CD 536)(WRB when(SBAR (-NONE- 0)(S (NP he)(VP moved (NP it)(PP to(NP (N london)))))))))))')
 #tr.pretty_print()
-trr=Tree.fromstring('(S (NP (PRP He)) (VP (VBD showed) (NP (PRP it)) \
-        (PP (IN to) (NP (NNP Terrence)))))')
+trr=Tree.fromstring("(S(NP I)(VP(VP (V shot) (NP (Det an) (N elephant)))(PP (P in) (NP (Det my) (N pajamas)))))")
 for pos in trr.treepositions():
     if trr[pos] == 'PRP him':
         print (pos)
 #print(trr.productions())
-#trr.pretty_print()
-tree7 =Tree.fromstring('(S(NP (DT the) (N castle) (PP in (NP (N camelot))))(VP remained(NP (DT the) (N residence (PP of (NP (DT the) (N king)))))(PP until(NP (CD 536) (WRB when  (SBAR (S (NP he) (VP moved (NP it) (PP to (NP (N london)))))))))))')
-print(trr.productions())
+trr.pretty_print()
+tree7 =Tree.fromstring('(S(NP (DT the) (N castle) (PP in (NP (N camelot))))(VP remained(NP (DT the) (N residence (PP of (NP (DT the) (N king)))))(PP until(NP (CD 536) (WRB when (S (NP he) (VP moved (NP it) (PP to (NP (N london))))))))))')
+print(tree7.productions())
+tree7.pretty_print()
 #for pos in tree7.treepositions():
     #if tree7[pos] == 'he':
         #print (pos)
+
+#(S(NP (DT the)(JJ little)(JJ yellow)(NN dog))(VBD barked)(IN at)(NP (DT the)(NN cat)))
