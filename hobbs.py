@@ -311,7 +311,6 @@ def hobbs(sents, pos):
     sentence_id = len(sents)-1
     # The number of sentences to be searched
     num_sents = len(sents)
-
     # Step 1: begin at the NP node immediately dominating the pronoun
     tree, pos = get_dom_np(sents, pos)
 
@@ -385,6 +384,7 @@ def resolve_reflexive(sents, pos):
     containing the anaphor, then the sentence probably isn't 
     grammatical or the reflexive is being used as an intensifier.
     """
+    
     tree, pos = get_dom_np(sents, pos)
 
     pro = tree[pos].leaves()[0].lower()
@@ -426,10 +426,9 @@ def walk_to_s(tree, pos):
 
 
 def demo():
-    tree1 = Tree.fromstring('(S (NP (NNP John) ) (VP (VBD said) (SBAR (-NONE- 0) \
-        (S (NP (PRP he) ) (VP (VBD likes) (NP (NNS dogs) ) ) ) ) ) )')
-    tree2 = Tree.fromstring('(S (NP (NNP John) ) (VP (VBD said) (SBAR (-NONE- 0) \
-        (S (NP (NNP Mary) ) (VP (VBD likes) (NP (PRP him) ) ) ) ) ) )')
+    tree1 = Tree.fromstring('(S(NP (NNP John))(VP(VBD said)(SBAR (S (NP (PRP he)) (VP (VBD likes) (NP (NNS dogs)))))))')
+    tree2 = Tree.fromstring('(S (NP (NNP John) ) (VP (VBD said) (SBAR (--NONE-- 0)\
+    (S (NP (NNP Mary) ) (VP (VBD likes) (NP (PRP him) ) ) ) ) ) )')
     tree3 = Tree.fromstring('(S (NP (NNP John)) (VP (VBD saw) (NP (DT a) \
         (JJ flashy) (NN hat)) (PP (IN at) (NP (DT the) (NN store)))))')
     tree4 = Tree.fromstring('(S (NP (PRP He)) (VP (VBD showed) (NP (PRP it)) \
@@ -443,14 +442,13 @@ def demo():
         (NP(NP(JJ other)(NNS attempts)(S(NP-SBJ (-NONE- *))(VP(TO to)\
         (VP (VB block) (NP (PRP$ his) (NN order))))))(PP (IN by)\
         (NP (NNP Commonwealth) (NNP Edison)))))))))))(. .))")
-    tree6 = Tree.fromstring('(S (NP (NNP John) ) (VP (VBD said) (SBAR (-NONE- 0) \
-        (S (NP (NNP Mary) ) (VP (VBD likes) (NP (PRP herself) ) ) ) ) ) )')
+    tree6 = Tree.fromstring('(S (NP (NNP John) ) (VP (VBD said) (SBAR(S (NP (NNP Mary) ) (VP (VBD likes) (NP (PRP herself) ) ) ) ) ) )')
     
-    tree7 =Tree.fromstring('(S(NP(DT the)(N castle)(PP in(NP (N camelot))))(VP remained(NP (DT the)(N residence(PP of(NP (DT the)(N king)))))(PP until(NP (CD 536)(WRB when(SBAR (-NONE- 0)(S (NP he)(VP moved (NP it)(PP to(NP (N london)))))))))))')
+    tree7 =Tree.fromstring('(S(NP (DT the) (N castle) (PP in (NP (N camelot))))(VP remained(NP (DT the) (N residence (PP of (NP (DT the) (N king)))))(PP until(NP (CD 536) (WRB when  (SBAR (S (NP he) (VP moved (NP it) (PP to (NP (N london)))))))))))')
 
     print("Sentence 1:")
     print(tree1)
-    tree, pos = hobbs([tree1], (1,1,1,0,0))
+    tree, pos = hobbs([tree1], (1,1,0,0,0,0))
     print ("Proposed antecedent for 'he':", tree[pos], '\n')
 
     print ("Sentence 2:")
@@ -475,8 +473,13 @@ def demo():
 
     print ("Sentence 6:")
     print (tree6)
-    tree, pos = resolve_reflexive([tree6], (1,1,1,1,1,0))
+    tree, pos = resolve_reflexive([tree6], (1, 1, 0, 1, 1, 0, 0))
     print ("Proposed antecedent for 'herself':", tree[pos], '\n')
+    
+    #print ("Sentence 7:")
+    #print (tree7)
+    #tree, pos = hobbs([tree7], (1,2,1,1,1,0,0,0))
+    #print ("Proposed antecedent for 'he':", tree[pos], '\n')
 
 
 def main(argv):
