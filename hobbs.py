@@ -465,6 +465,7 @@ def demo():
     tree, pos = hobbs([tree3,tree4], (0,0))
     print ("Proposed antecedent for 'he':", tree[pos], '\n')
     print(tree4[(0,0)])
+    print(tree4[(1,1,0)])
 
     print ("Sentence 5:")
     print (tree5)

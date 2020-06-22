@@ -11,7 +11,8 @@ t=tree.treepositions()
    # print('\n',i,'\n')
 #tr=Tree.fromstring('(S(NP(DT the)(N castle)(PP in(NP (N camelot))))(VP remained(NP (DT the)(N residence(PP of(NP (DT the)(N king)))))(PP until(NP (CD 536)(WRB when(SBAR (-NONE- 0)(S (NP he)(VP moved (NP it)(PP to(NP (N london)))))))))))')
 #tr.pretty_print()
-trr=Tree.fromstring('(S (NP (NNP John) ) (VP (VBD said) (SBAR(S (NP (NNP Mary) ) (VP (VBD likes) (NP (PRP him) ) ) ) ) ) )')
+trr=Tree.fromstring('(S (NP (PRP He)) (VP (VBD showed) (NP (PRP it)) \
+        (PP (IN to) (NP (NNP Terrence)))))')
 for pos in trr.treepositions():
     if trr[pos] == 'PRP him':
         print (pos)

@@ -8,17 +8,22 @@ p = ["He", "he", "Him", "him", "She", "she", "Her",
 def convert_to_treebank(sentence):
     grammar = nltk.CFG.fromstring("""
 S -> NP VP
-NP -> NNP
-NNP -> 'John'|'Mary'|'Tej'
+NP -> NNP|DT JJ NN|DT NN
+DT -> 'a'|'the'
+JJ -> 'flashy'
+NN -> 'hat'|'store'
+PP -> IN NP
+IN -> 'at'|'to'
+NNP -> 'John'|'Mary'|'Tej'|'Terrence'
 VP -> VBD SBAR
 VBD -> 'said'
 SBAR -> NONE S|S
 NONE -> '.'
 S -> NP VP
 NP -> PRP
-PRP -> 'he'|'herself'|'him'|'her'|'himself'|'she'
-VP -> VBD NP
-VBD -> 'likes'
+PRP -> 'he'|'herself'|'him'|'her'|'himself'|'she'|'He'|'it'
+VP -> VBD NP|VBD NP PP
+VBD -> 'likes'|'loves'|'knows'|'saw'|'showed'
 NP -> NNS
 NNS -> 'dogs'
  """)
@@ -29,7 +34,7 @@ NNS -> 'dogs'
     for parse in parses: 
         #print(parse.treepositions())
         parse.pretty_print()
-        return [parse]
+        return parse
 def resolve_reflexive(sents, pro):
     """ Resolves reflexive pronouns by going to the first S
     node above the NP dominating the pronoun and searching for
@@ -69,7 +74,7 @@ def hobbs(sents, pro):
     tree, pos = get_dom_np(sents, pos)
 
     # String representation of the pronoun to be resolved
-    #pro = tree[pos].leaves()[0].lower()
+    pro = tree[pos].leaves()[0].lower()
 
     # Step 2: Go up the tree to the first NP or S node encountered
     path, pos = walk_to_np_or_s(tree, pos)
@@ -129,12 +134,13 @@ def hobbs(sents, pro):
                 return proposal
 
     return proposal
-sent=input("enter a sentence:")
-pron=input("enter the pronoun to resolve:")
+sents = [convert_to_treebank(sents) for sents in input("Enter multiple sents: ").split(",")]
+pros = [(pros) for pros in input("Enter multiple pros: ").split(",")] 
+for i in range(len(pros)):
+    if pros[i] in p:
+        tree,pos=hobbs(sents,pros[i])
+        print ("Proposed antecedent for '"+pros[i]+"':", tree[pos])
+    elif pros[i] in r:
+        tree,pos=resolve_reflexive(sents,pros[i])
+        print ("Proposed antecedent for '"+pros[i]+"':", tree[pos])
 
-if pron in r:
-    tree,pos=resolve_reflexive(convert_to_treebank(sent),pron)
-    print ("Proposed antecedent for '"+pron+"':", tree[pos])
-elif pron in p:
-    tree,pos=hobbs(convert_to_treebank(sent),pron)
-    print ("Proposed antecedent for '"+pron+"':", tree[pos])
