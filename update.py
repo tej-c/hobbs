@@ -118,7 +118,7 @@ def hobbs(sents, pro):
                 return proposal
 
     return proposal
-sents = [convert_to_treebank(sents.lower()) for sents in input("you can Enter multiple sents, (,) seperated: ").split(",")]
+sents = [convert_to_treebank(sents.lower()) for sents in input("you can Enter multiple sents, (,) seperated: ").split(".")]
 pros = [(pros.lower()) for pros in input("you can Enter multiple pros, (,) seperated: ").split(",")] 
 for i in range(len(pros)):
     if pros[i] in p:
