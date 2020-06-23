@@ -9,21 +9,21 @@ def convert_to_treebank(sentence):
     grammar = nltk.CFG.fromstring("""
 S -> NP VP|IN NP|NP VBD RP NP|NP VBD IN NP|PP NP PP NP NP VP NP
 RP -> 'down' 
-NP -> NNP|DT JJ NN|DT NN|DT NNS|NP VP|DT JJ JJ NN|NN|NNP NNP|NP NN|PRP NN
+NP -> NNP|DT JJ NN|DT NN|DT NNS|NP VP|DT JJ JJ NN|NN|NNP NNP|NP NN|PRP NN|JJ NN
 PRP -> 'my'
 DT -> 'a'|'the'|'an'
 JJ -> 'flashy'|'long'|'golden'|'little'|'yellow'
-NN -> 'hat'|'store'|'dog'|'cat'|'hair'|'cup'|'coffee'|'story'|'mat'|'rabbit'|'elephant'|'pajamas'|'market'
+NN -> 'hat'|'store'|'dog'|'cat'|'hair'|'cup'|'coffee'|'story'|'mat'|'rabbit'|'elephant'|'pajamas'|'market'|'truck'
 PP -> IN NP |IN | NP IN
 IN -> 'at'|'to'|'in'|'of'|'until'|'that'|'over'|'on'|'and'
-NNP -> 'john'|'mary'|'tej'|'terrence'|'rapunzel'|'mr.'|'stone'|'alice'
+NNP -> 'john'|'mary'|'tej'|'terrence'|'rapunzel'|'mr.'|'stone'|'alice'|'smith'|'driver'
 VP -> VBD SBAR
 VBD -> 'said'
 SBAR -> S
 NP -> 'he'|'herself'|'him'|'her'|'himself'|'she'|'He'|'it'|'his'|'i'|'they'
 VP -> VBD NP|VBD NP PP|VRB PP|VRB|VP PP|VBD
 VBD -> 'likes'|'loves'|'knows'|'saw'|'showed'|'liked'|'dumped'|'loved'|'let'|'barked'|'told'|'sit'|'chased'|'shot'|'went'|'drank'|'gave'|'is'|'going'|'was'|'buy'|'has'|'scared'|'went'
-NP -> NNS|NP JJ JJ NN
+NP -> NNS|NP JJ JJ NN|DT NNP|NP JJ NN
 NNS -> 'dogs'
  """)
     a=BottomUpLeftCornerChartParser(grammar)
