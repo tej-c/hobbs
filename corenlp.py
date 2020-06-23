@@ -8,7 +8,7 @@ p = ["He", "he", "Him", "him", "She", "she", "Her",
 def convert_to_treebank(sentence):
     grammar = nltk.CFG.fromstring("""
 S -> NP VP|IN NP|NP VBD RP NP|NP VBD IN NP|PP NP PP NP NP VP NP
-RP -> 'down'
+RP -> 'down' 
 NP -> NNP|DT JJ NN|DT NN|DT NNS|NP VP|DT JJ JJ NN|NN|NNP NNP|NP NN|PRP NN
 PRP -> 'my'
 DT -> 'a'|'the'|'an'
