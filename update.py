@@ -12,8 +12,8 @@ RP -> 'down'
 NP -> NNP|DT JJ NN|DT NN|DT NNS|NP VP|DT JJ JJ NN|NN|NNP NNP|NP NN|PRP NN|JJ NN
 PRP -> 'my'
 DT -> 'a'|'the'|'an'
-JJ -> 'flashy'|'long'|'golden'|'little'|'yellow'
-NN -> 'hat'|'store'|'dog'|'cat'|'hair'|'cup'|'coffee'|'story'|'mat'|'rabbit'|'elephant'|'pajamas'|'market'|'truck'
+JJ -> 'flashy'|'long'|'golden'|'little'|'yellow'|'beautiful'
+NN -> 'hat'|'store'|'dog'|'cat'|'hair'|'cup'|'coffee'|'story'|'mat'|'rabbit'|'elephant'|'pajamas'|'market'|'truck'|'portrait'
 PP -> IN NP |IN | NP IN
 IN -> 'at'|'to'|'in'|'of'|'until'|'that'|'over'|'on'|'and'
 NNP -> 'john'|'mary'|'tej'|'terrence'|'rapunzel'|'mr.'|'stone'|'alice'|'smith'|'driver'
