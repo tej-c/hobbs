@@ -35,12 +35,6 @@ NNS -> 'dogs'
         parse.pretty_print()
         return parse
 def resolve_reflexive(sents, pro):
-    """ Resolves reflexive pronouns by going to the first S
-    node above the NP dominating the pronoun and searching for
-    a matching antecedent. If none is found in the lowest S
-    containing the anaphor, then the sentence probably isn't 
-    grammatical or the reflexive is being used as an intensifier.
-    """
     pos=get_pos(sents[-1],pro)
     tree, pos = get_dom_np(sents, pos)
 
@@ -54,15 +48,6 @@ def resolve_reflexive(sents, pro):
 
     return proposal
 def hobbs(sents, pro):
-    """ The implementation of Hobbs' algorithm.
-
-    Args:
-        sents: list of sentences to be searched
-        pos: the position of the pronoun to be resolved
-    Returns:
-        proposal: a tuple containing the tree and position of the
-            proposed antecedent
-    """
     pos=get_pos(sents[-1],pro)
     # The index of the most recent sentence in sents
     sentence_id = len(sents)-1
