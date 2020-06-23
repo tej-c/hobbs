@@ -18,7 +18,7 @@ for pos in trr.treepositions():
 #ṇprint(trr.productions())
 trr.pretty_print()
 tree7 =Tree.fromstring('(S(NP (DT the) (N castle) (PP in (NP (N camelot))))(VP remained(NP (DT the) (N residence (PP of (NP (DT the) (N king)))))(PP until(NP (CD 536) (WRB when (S (NP he) (VP moved (NP it) (PP to (NP (N london))))))))))')
-print(tree7.productions())
+print(tree7.productions()) 
 tree7.pretty_print()
 #for pos in tree7.treepositions():
     #if tree7[pos] == 'he':
