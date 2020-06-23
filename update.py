@@ -15,14 +15,14 @@ DT -> 'a'|'the'|'an'
 JJ -> 'flashy'|'long'|'golden'|'little'|'yellow'
 NN -> 'hat'|'store'|'dog'|'cat'|'hair'|'cup'|'coffee'|'story'|'mat'|'rabbit'|'elephant'|'pajamas'
 PP -> IN NP |IN | NP IN
-IN -> 'at'|'to'|'in'|'of'|'until'|'that'|'over'|'on'
+IN -> 'at'|'to'|'in'|'of'|'until'|'that'|'over'|'on'|'and'
 NNP -> 'john'|'mary'|'tej'|'terrence'|'rapunzel'|'mr.'|'stone'|'alice'
 VP -> VBD SBAR
 VBD -> 'said'
 SBAR -> S
-NP -> 'he'|'herself'|'him'|'her'|'himself'|'she'|'He'|'it'|'his'|'i'
+NP -> 'he'|'herself'|'him'|'her'|'himself'|'she'|'He'|'it'|'his'|'i'|'they'
 VP -> VBD NP|VBD NP PP|VRB PP|VRB|VP PP|VBD
-VBD -> 'likes'|'loves'|'knows'|'saw'|'showed'|'liked'|'dumped'|'loved'|'let'|'barked'|'told'|'sit'|'chased'|'shot'
+VBD -> 'likes'|'loves'|'knows'|'saw'|'showed'|'liked'|'dumped'|'loved'|'let'|'barked'|'told'|'sit'|'chased'|'shot'|'went'|'drank'
 NP -> NNS|NP JJ JJ NN
 NNS -> 'dogs'
  """)
