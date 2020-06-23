@@ -13,7 +13,7 @@ NP -> NNP|DT JJ NN|DT NN|DT NNS|NP VP|DT JJ JJ NN|NN|NNP NNP|NP NN|PRP NN
 PRP -> 'my'
 DT -> 'a'|'the'|'an'
 JJ -> 'flashy'|'long'|'golden'|'little'|'yellow'
-NN -> 'hat'|'store'|'dog'|'cat'|'hair'|'cup'|'coffee'|'story'|'mat'|'rabbit'|'elephant'|'pajamas'
+NN -> 'hat'|'store'|'dog'|'cat'|'hair'|'cup'|'coffee'|'story'|'mat'|'rabbit'|'elephant'|'pajamas'|'market'
 PP -> IN NP |IN | NP IN
 IN -> 'at'|'to'|'in'|'of'|'until'|'that'|'over'|'on'|'and'
 NNP -> 'john'|'mary'|'tej'|'terrence'|'rapunzel'|'mr.'|'stone'|'alice'
@@ -22,7 +22,7 @@ VBD -> 'said'
 SBAR -> S
 NP -> 'he'|'herself'|'him'|'her'|'himself'|'she'|'He'|'it'|'his'|'i'|'they'
 VP -> VBD NP|VBD NP PP|VRB PP|VRB|VP PP|VBD
-VBD -> 'likes'|'loves'|'knows'|'saw'|'showed'|'liked'|'dumped'|'loved'|'let'|'barked'|'told'|'sit'|'chased'|'shot'|'went'|'drank'
+VBD -> 'likes'|'loves'|'knows'|'saw'|'showed'|'liked'|'dumped'|'loved'|'let'|'barked'|'told'|'sit'|'chased'|'shot'|'went'|'drank'|'gave'|'is'|'going'|'was'|'buy'|'has'|'scared'|'went'
 NP -> NNS|NP JJ JJ NN
 NNS -> 'dogs'
  """)
