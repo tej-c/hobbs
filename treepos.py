@@ -15,7 +15,7 @@ trr=Tree.fromstring("(S(NP I)(VP(VP (V shot) (NP (Det an) (N elephant)))(PP (P i
 for pos in trr.treepositions():
     if trr[pos] == 'PRP him':
         print (pos)
-#print(trr.productions())
+#ṇprint(trr.productions())
 trr.pretty_print()
 tree7 =Tree.fromstring('(S(NP (DT the) (N castle) (PP in (NP (N camelot))))(VP remained(NP (DT the) (N residence (PP of (NP (DT the) (N king)))))(PP until(NP (CD 536) (WRB when (S (NP he) (VP moved (NP it) (PP to (NP (N london))))))))))')
 print(tree7.productions())

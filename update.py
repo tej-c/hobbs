@@ -21,7 +21,7 @@ VP -> VBD SBAR
 VBD -> 'said'
 SBAR -> S
 NP -> 'he'|'herself'|'him'|'her'|'himself'|'she'|'He'|'it'|'his'|'i'
-VP -> VBD NP|VBD NP PP|VRB PP|VRB|VP PP
+VP -> VBD NP|VBD NP PP|VRB PP|VRB|VP PP|VBD
 VBD -> 'likes'|'loves'|'knows'|'saw'|'showed'|'liked'|'dumped'|'loved'|'let'|'barked'|'told'|'sit'|'chased'|'shot'
 NP -> NNS|NP JJ JJ NN
 NNS -> 'dogs'
@@ -133,8 +133,8 @@ def hobbs(sents, pro):
                 return proposal
 
     return proposal
-sents = [convert_to_treebank(sents.lower()) for sents in input("Enter multiple sents: ").split(",")]
-pros = [(pros.lower()) for pros in input("Enter multiple pros: ").split(",")] 
+sents = [convert_to_treebank(sents.lower()) for sents in input("you can Enter multiple sents, (,) seperated: ").split(",")]
+pros = [(pros.lower()) for pros in input("you can Enter multiple pros, (,) seperated: ").split(",")] 
 for i in range(len(pros)):
     if pros[i] in p:
         tree,pos=hobbs(sents,pros[i])
